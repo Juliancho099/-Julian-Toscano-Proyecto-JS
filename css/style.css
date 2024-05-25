@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    position: relative;
+    z-index: 4;
+    background-image: url('../img/pexels-maryna-b-103393676-13153317.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.container__btn{
+    position: absolute;
+    top: 0px;
+    padding: 20px;
+    background-color: transparent;
+    border: none;
+    
+}
+
+.container__svg{
+    width: 30px;
+}
+
+.container__cover{
+    background: rgba(28, 28, 28, 0.7);
+    width: 100%;
+    height: 100vh;
+}
+
+.container__main{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container__titulo{
+    font-size: 100px;
+    color: #ccc;
+}
+
+.container__parrafo{
+    font-size: 30px;
+    color: #a77bcf;
+}
+
+.container__boton{
+    padding: 10px;
+    background-color: #aaa;
+    border: 2px solid #a77bcf;
+}
