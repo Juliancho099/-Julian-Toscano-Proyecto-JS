@@ -170,7 +170,7 @@ formulario.addEventListener('submit', (e) => {
             <h3 class='tabla__titulo--estudiante'>${estudiante}</h3>
         </form>`;
 
-        let tituloEstudiante = divEstudiante.querySelector('.tabla__titulo--estudiante');
+            let tituloEstudiante = divEstudiante.querySelector('.tabla__titulo--estudiante');
 
             let formNotas = divEstudiante.querySelector('.form__notas');
             let button = document.createElement('button');
@@ -179,7 +179,7 @@ formulario.addEventListener('submit', (e) => {
 
             const botonEliminar = document.createElement('button');
             botonEliminar.innerText = 'Eliminar'
-            botonEliminar.addEventListener('click', ()=>{
+            botonEliminar.addEventListener('click', () => {
                 formNotas.remove()
 
                 estudiantes = estudiantes.filter(est => est.nombre !== estudiante);
@@ -234,26 +234,39 @@ formulario.addEventListener('submit', (e) => {
                     nombreEstudiante.classList.add('tabla__titulo--estudiante');
                     nombreEstudiante.innerText = estudiante;
 
+                    let suma = 0;
+                    let cantidadValida = 0;
+
                     contenedorTablas.append(nombreEstudiante);
 
                     inputs.forEach((input, index) => {
                         let value = parseFloat(input.value) || 0;
-                        suma += value;
+                        if (!isNaN(value)) { // Verifica si es un número válido
+                            console.log(value);
+                            suma += value;
+                            cantidadValida++; // Incrementa el contador de valores válidos
 
-                        let fila = document.createElement('tr');
+                            let fila = document.createElement('tr');
+                            let tdNota = document.createElement('td');
+                            tdNota.innerText = `Nota ${index + 1}`;
+                            fila.append(tdNota);
 
-                        let tdNota = document.createElement('td');
-                        tdNota.innerText = `Nota ${index + 1}`;
-                        fila.append(tdNota);
+                            let tdValor = document.createElement('td');
+                            tdValor.innerText = value;
+                            fila.append(tdValor);
 
-                        let tdValor = document.createElement('td');
-                        tdValor.innerText = value;
-                        fila.append(tdValor);
-
-                        tabla.append(fila);
+                            tabla.append(fila);
+                        }
                     });
 
-                    const calculoPromedio = parseInt(suma / inputs.length);
+                    let promedioCant = 0; // Inicializa el promedio
+                    if (cantidadValida > 0) { // Verifica si hay valores válidos
+                        promedioCant = suma / cantidadValida; // Calcula el promedio
+                        promedioCant = parseFloat(promedioCant.toFixed(2)); // Redondea el promedio a 2 decimales
+                    }
+
+                    console.log(promedioCant)
+
 
                     let filaPromedio = document.createElement('tr');
                     let promedio = document.createElement('td');
@@ -261,20 +274,16 @@ formulario.addEventListener('submit', (e) => {
                     filaPromedio.append(promedio);
 
                     let promedioValor = document.createElement('td');
-                    if(calculoPromedio > 10){
-                        promedioValor.innerText = 10;
-                    }else{
-                        promedioValor.innerText = calculoPromedio
-                    }
+                    promedioValor.innerText = promedioCant
                     filaPromedio.append(promedioValor);
-                    tabla.append(filaPromedio);
-
-                    if (calculoPromedio < 7) {
+                    if (promedioCant <= 6) {
                         promedioValor.style.color = '#900';
-                    } else if (calculoPromedio >= 7) {
+                    } else if (promedioCant >= 7) {
                         promedioValor.style.color = '#690'
                         promedioValor = 10;
                     }
+                    tabla.append(filaPromedio);
+
 
                     contenedorTablas.append(tabla);
                     tablaAprobados.append(contenedorTablas);
