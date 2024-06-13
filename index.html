@@ -4,40 +4,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acai Store</title>
+    <!-- icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- css -->
     <link rel="stylesheet" href="./css/style.css">
+    <title>Acai Store</title>
 </head>
 
 <body>
     <!-- PORTADA -->
 
-    <div id="contain" class="container">
+    <div id="contain" class="container container__display--none">
         <div class="container__cover">
             <main class="container__main">
                 <h1 class="container__titulo">ACAI STORE</h1>
-                <P class="container__parrafo">¿Listo para la nueva aventura?</P>
-                <button class="container__boton">Proximamente</button>
+                <P class="container__parrafo lead">¿Listo para la nueva aventura?</P>
+                <button id="show-menu" class="container__boton">Proximamente</button>
             </main>
         </div>
 
-        <button class="container__btn"><svg xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-user-filled container__svg" width="44" height="44"
-                viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M12 2a5 5 0 1 1 -5 5l.005 -.217a5 5 0 0 1 4.995 -4.783z" stroke-width="0"
-                    fill="currentColor" />
-                <path d="M14 14a5 5 0 0 1 5 5v1a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-1a5 5 0 0 1 5 -5h4z"
-                    stroke-width="0" fill="currentColor" />
-            </svg>
+        <button id="btn-user" class="container__btnuser">
+            <i class="bi bi-person-square container__user"></i>
+            Login
         </button>
     </div>
+    <!-- pedir login -->
+    <div id="log-in-container" class="login container__display--none">
+        <div class="login__container">
+            <form class="form">
+                <div class="form__login">
+                    <Label for="user-input" class="form__label">Usuario</Label>
+                    <input type="text" lang="1" class="form__control" id="user-input">
+                </div>
+                <div class="form__login">
+                    <label for="pass-input" class="form__label">Contraseña</label>
+                    <input type="password" class="form__control" id="pass-input">
+                </div>
+                <div class="form__login form__login--two">
+                    <input type="checkbox" class="form__checkbox" id="recuerdame">
+                    <label for="recuerdame" class="form__recuerdame">Recuerda mis datos</label>
+                </div>
+                <button id="btn-login" class="form__btn" type="button">Confirmar</button>
+                <button id="btn-cancel" class="form__btn" type="button">Cancelar</button>
+                <p id="rechazo" class="form__denegado container__display--none"> Alguno de los datos no es correcto</p>
+            </form>
+        </div>
     </div>
 
-    
+    <article class="contenedor">
+        <header id="nav-bar" class="contenedor__header">
+            <div class="contenedor__nav">
+                <nav class="contenedor__home">
+                    <a class="contenedor__navegacion"><i class="bi bi-house-gear-fill" id="home-img"></i></a>
+                    <div class="contenedor__links contenedor__links--none">
+                        <a href="#acai-bowls" class="contenedor__link contenedor__link--active" data-index="0">Bowls</a>
+                        <a href="#informacion" class="contenedor__link contenedor__link--active"
+                            data-index="1">Informacion</a>
+                        <a href="#" class="contenedor__link contenedor__link--active" data-index="2">Equipo</a>
+                    </div>
+                    <a class="contenedor__boton"><i class="bi bi-menu-button navegacion__hamburguesa"></i></a>
+                </nav>
+            </div>
+        </header>
+
+        <div class="tabla">
+            <div class="tabla__contenedor">
+                <div class="tabla__titulo">
+                    <h3>Tabla de Notas</h3>
+                </div>
+                <form class="tabla__notas">
+                    <label for="estudiante">Nombe estudiante</label>
+                    <input type="text" id="estudiante" required>
+                    <label for="notas">Ingrese la cantidad de notas</label>
+                    <input type="number" id="notas" required>
+                    <button type="submit" class="boton__form">Enviar</button>
+                </form>
+                <button class="boton__ver">VEAMOS</button>
+            </div>
+            <div class="tabla__resultado tabla__display">
+                <!-- JS -->
+
+                <div class="tabla__aprobados">
+                    <h3>APROBADOS</h3>
+                    <div class="estudiante__tabla">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+
+
 
     <!-- Codigo JS -->
-    <Script src="./js/main.js" defer></Script>
+    <Script src="./js/main.js"></Script>
 </body>
 
 </html>
