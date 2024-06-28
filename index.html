@@ -8,97 +8,144 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- css -->
     <link rel="stylesheet" href="./css/style.css">
+    <!-- Normalize -->
+    <link rel="stylesheet" href="./css/normalize.css">
     <title>Acai Store</title>
 </head>
 
 <body>
     <!-- PORTADA -->
+    <div id="portada" class="portada">
+        <main class="main">
+            <h1 class="main__titulo">ACAI STORE</h1>
+            <P class="main__parrafo lead">¿Listo para la nueva aventura?</P>
+            <button id="show-menu" class="main__boton">Ver Mas</button>
+        </main>
 
-    <div id="contain" class="container ">
-        <div class="container__cover">
-            <main class="container__main">
-                <h1 class="container__titulo">ACAI STORE</h1>
-                <P class="container__parrafo lead">¿Listo para la nueva aventura?</P>
-                <button id="show-menu" class="container__boton">Ver Mas</button>
-            </main>
-        </div>
-
-        <button id="btn-user" class="container__btnuser">
-            <i class="bi bi-person-square container__user"></i>
-            Login
+        <button id="btn-user" class="portada__btnuser">
+            <i class="bi bi-person-circle"></i>
         </button>
     </div>
     <!-- pedir login -->
-    <div id="log-in-container" class="login container__display--none">
-        <div class="login__container">
-            <form class="form">
+    <div id="log-in-container" class="login display">
+        <div class="login__contenedor">
+            <form id="login-form" class="form">
                 <div class="form__login">
                     <Label for="user-input" class="form__label">Usuario</Label>
-                    <input type="text" lang="1" class="form__control" id="user-input">
+                    <input type="mail" placeholder="Ingrese su Email" lang="1" class="form__control" id="user-mail" autofocus required>
+                </div>
+                <div class="form__login">
+                    <label class="form__label">Contraseña</label>
+                    <input type="password" class="form__control" id="pass" required>
+                    <p class="form__registrate">No tienes una cuenta? <a href="#" id="registrate">Registrate</a></p>
+                </div>
+                <div class="form__btns">
+                    <button id="btn-login" class="form__btn" type="submit">Confirmar</button>
+                    <button id="btn-cancel" class="form__btn cerrar" >Cancelar</button>
+                </div>
+                <p id="rechazo" class="form__denegado portada--none"> Alguno de los datos no es correcto</p>
+            </form>
+            <form id="register-form" class="form form--display">
+                <div class="form__login">
+                    <Label class="form__label">Usuario</Label>
+                    <input type="text" lang="1" class="form__control" id="user" autofocus required>
+                </div>
+                <div class="form__login">
+                    <Label for="mail-input" class="form__label">Correo</Label>
+                    <input type="mail" lang="1" class="form__control" id="email-input" required>
                 </div>
                 <div class="form__login">
                     <label for="pass-input" class="form__label">Contraseña</label>
-                    <input type="password" class="form__control" id="pass-input">
+                    <input type="password" class="form__control" id="pass-input" required>
                 </div>
-                <div class="form__login form__login--two">
-                    <input type="checkbox" class="form__checkbox" id="recuerdame">
-                    <label for="recuerdame" class="form__recuerdame">Recuerda mis datos</label>
+                <div class="form__btns">
+                    <button id="btn-register" class="form__btn" type="submit">Confirmar</button>
+                    <button id="btn-cancel-register" class="form__btn" type="button">Cancelar</button>
                 </div>
-                <button id="btn-login" class="form__btn" type="button">Confirmar</button>
-                <button id="btn-cancel" class="form__btn" type="button">Cancelar</button>
-                <p id="rechazo" class="form__denegado container__display--none"> Alguno de los datos no es correcto</p>
+                <p id="rechazo-register" class="form__denegado portada--none"> Alguno de los datos no es correcto</p>
             </form>
+            <div class="user user__display">
+                <h3 class="user__estado">Sesion Iniciada</h3>
+                <div class="user__informacion">
+                    <p class="user__name"><span>Nombre:</span> Julian</p>
+                    <button class="user__logout">Cerrar Sesion</button>
+                    <p id="user-out" class="cerrar"><i class="bi bi-x-lg"></i></p>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- PRINCIPAL -->
+
     <article class="contenedor">
         <header id="nav-bar" class="contenedor__header">
-            <div class="contenedor__nav">
-                <nav class="contenedor__home">
-                    <a class="contenedor__navegacion"><i class="bi bi-house-gear-fill" id="home-img"></i></a>
-                    <div class="contenedor__links contenedor__links--none">
-                        <a href="#acai-bowls" class="contenedor__link contenedor__link--active" data-index="0">Bowls</a>
-                        <a href="#informacion" class="contenedor__link contenedor__link--active"
-                            data-index="1">Informacion</a>
-                        <a href="#" class="contenedor__link contenedor__link--active" data-index="2">Equipo</a>
-                    </div>
-                    <a class="contenedor__boton"><i class="bi bi-menu-button navegacion__hamburguesa"></i></a>
-                </nav>
-            </div>
+            <nav class="nav">
+                <a id="home" class="nav__logo"><i class="bi bi-house-gear-fill" id="home-img"></i></a>
+                <div class="nav__links nav--display">
+                    <a href="#acai-bowls" class="nav__link nav__link--active" data-index="0">Bowls</a>
+                    <a href="#informacion" class="nav__link nav__link--active" data-index="1">Informacion</a>
+                    <a href="#" class="nav__link nav__link--active" data-index="2">Equipo</a>
+                </div>
+                <a id="nav" class="nav__logo"><i class="bi bi-menu-button"></i></a>
+            </nav>
         </header>
 
-        <div class="tabla">
-            <div class="tabla__contenedor">
-                <div class="tabla__titulo">
-                    <h3>Tabla de Notas</h3>
+        <!-- SLOGAN -->
+        <section class="slogan">
+            <div class="video">
+                <video loop muted preload autoplay>
+                    <source src="./sources/acai.mp4">
+                </video>
+                <div class="video__informacion video--none">
+                    <h2 class="video__titulo">ACAI</h2>
+                    <p class="video__parrafo">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae, iure?
+                    </p>
                 </div>
-                <form class="tabla__notas">
-                    <label for="estudiante">Nombe estudiante</label>
-                    <input type="text" id="estudiante" required>
-                    <label for="notas">Ingrese la cantidad de notas</label>
-                    <input type="number" id="notas" required>
-                    <button type="submit" class="boton__form">Enviar</button>
-                </form>
-                <button class="boton__ver">VEAMOS</button>
             </div>
-            <div class="tabla__resultado tabla__display">
-                <!-- JS -->
+        </section>
 
-                <div class="tabla__aprobados">
-                    <h3>APROBADOS</h3>
-                    <div class="estudiante__tabla">
-                        
+        <!-- BOWLS -->
+
+        <section class="cardSeccion">
+            <h2 class="cardSeccion__titulo">Bowls</h2>
+            <div class="card">
+                <div class="bowls">
+                    <div class="bowls__atras">
+                        <i id="atras" class="bi bi-arrow-left-short"></i>
+                    </div>
+                    <div class="bowls__cont">
+                        <template>
+                            <div class="bowls__imagenes">
+                                <div id="img">
+                                    <img src="./sources/acaiLogo.jpeg" alt="" class="bowls__img">
+                                </div>
+                                <div class="bowls__texto">
+                                    <h3 class="bowls__titulo">Harper Acai</h3>
+                                    <p class="bowls__descripcion">Lorem ipsum dolor, sit amet consectetur adipisicing.
+                                    </p>
+                                    <p class="bowls__price">$7000</p>
+                                    <buttom class="bowls__btn" id="comprar">comprar</buttom>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="bowls__adelante">
+                        <i id="adelante" class="bi bi-arrow-right-short"></i>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
     </article>
 
-
-
-
-    <!-- Codigo JS -->
-    <Script src="./js/main.js"></Script>
+    <!-- AlertasSweet -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- MAIN JS -->
+    <script src="./js/main.js"></script>
+    <!-- lOGIN -->
+    <script src="/js/login.js"></script>
+    <!-- Register -->
+    <script src="/js/register.js"></script>
 </body>
 
 </html>
