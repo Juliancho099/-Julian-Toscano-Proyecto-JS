@@ -6,325 +6,297 @@
 
 function mostrarSeccion(seccion) {
     if (seccion == menu || seccion == login) {
-        seccion.classList.remove('container__display--none');
-        seccion.classList.add('container__from-up');
-        seccion.classList.remove('container__to-up');
+        seccion.classList.remove('display');
+        seccion.classList.add('from-up');
+        seccion.classList.remove('top--up');
         if (seccion == login) {
-            btnLogin.classList.add('container__display--none');
+            btnLogin.classList.add('display');
         }
     } else if (seccion == nav) {
-        seccion.classList.remove('contenedor__links--none');
-        seccion.classList.remove('contenedor__right');
-        seccion.classList.add('contenedor__left');
-        btnNav.classList.add('contenedor__links--none');
+        seccion.classList.remove('nav--display');
+        seccion.classList.remove('right');
+        seccion.classList.add('left');
+        btnNav.classList.add('nav--display');
     }
+
+
 }
 
 function ocultarSeccion(seccion) {
     if (seccion == menu || seccion == login) {
-        seccion.classList.remove('container__from-up');
-        seccion.classList.add('container__to-up');
+        seccion.classList.remove('from-up');
+        seccion.classList.add('top--up');
+        setTimeout(() => {
+            seccion.classList.add('display');
+        }, 700);
         if (seccion == login) {
             setTimeout(() => {
-                btnLogin.classList.remove('container__display--none');
+                btnLogin.classList.remove('display');
             }, 700);
         }
-        setTimeout(() => {
-            seccion.classList.add('container__display--none');
-        }, 700);
     } else if (seccion == nav) {
-        seccion.classList.add('contenedor__right');
-        seccion.classList.remove('contenedor__left');
+        seccion.classList.add('right');
+        seccion.classList.remove('left');
         setTimeout(() => {
-            seccion.classList.add('contenedor__links--none');
-            btnNav.classList.remove('contenedor__links--none');
+            seccion.classList.add('nav--display');
+            btnNav.classList.remove('nav--display');
         }, 700);
     }
-}
-
-function ocultarMostrartabla(seccion) {
-    seccion.classList.toggle('tabla__display');
 }
 
 const botonCerrar = () => {
-    const btnCerrar = document.createElement('a');
-    const overlay = document.createElement('div');
-    overlay.classList.add('contenedor__links--cover');
-    btnCerrar.classList.add('contenedor__boton', 'contenedor__boton--cerrar');
-    btnCerrar.innerHTML = `<i class="bi bi-x-lg navegacion__hamburguesa navegacion__hamburguesa--cerrar"></i>`;
+    btnCerrar = document.createElement('a');
+    btnCerrar.id = 'nav-cerrar';
+    btnCerrar.classList.add('nav__logo', 'nav__logo--absolute');
+    btnCerrar.innerHTML = `<i class="bi bi-x-lg"></i>`;
 
     nav.appendChild(btnCerrar);
-    if (document.querySelectorAll('.contenedor__links--cover').length === 0) {
-        articulo.appendChild(overlay);
-    }
 
-    const removeElements = () => {
+    btnCerrar.addEventListener('click', () => {
+        ocultarSeccion(nav);
         setTimeout(() => {
-            if (btnCerrar.parentElement) nav.removeChild(btnCerrar);
-            if (overlay.parentElement) articulo.removeChild(overlay);
-            ocultarSeccion(nav);
-        }, 100);
-    };
-
-    overlay.addEventListener('click', removeElements);
-    btnCerrar.addEventListener('click', removeElements);
+            if (nav.contains(btnCerrar)) {
+                nav.removeChild(btnCerrar);
+            }
+        }, 200);
+    });
 };
 
-function botonVolver() {
-    let button2 = document.createElement('button');
-    button2.classList.add('boton__volver');
-    button2.textContent = 'Volver';
-    tablaAprobados.appendChild(button2);
-
-    button2.addEventListener('click', () => {
-        ocultarMostrartabla(tabla);
-        ocultarMostrartabla(contenedorTabla);
-        tablaAprobados.removeChild(button2);
-    });
-
-    return button2;
+function mostrarFormularioRegistro() {
+    registerForm.classList.remove('form--display');
+    loginForm.classList.add('form--display');
 }
 
-function moverBotonVolverAlFinal() {
-    const botonVolver = document.querySelector('.boton__volver');
-    if (botonVolver) {
-        tablaAprobados.appendChild(botonVolver);
+function mostrarFormularioLogin() {
+    loginForm.classList.remove('form--display');
+    registerForm.classList.add('form--display');
+}
+
+
+
+//Manejar el scroll para el manejo del forEach
+
+let bowlsCont = document.querySelector('.bowls__cont');
+let template = document.querySelector('template').content;
+
+function scrollWindows() {
+
+        // Mostrar una sola vez cuando se está por debajo de los píxeles
+        bowlsCont.innerHTML = ''; // Limpiar contenido anterior antes de agregar nuevo
+        let plantilla = template.cloneNode(true);
+        bowlsCont.append(plantilla);
+
+        // Mostrar flechas de navegación cuando se está por debajo de los píxeles
+        document.querySelector('.bowls__atras').style.display = 'block';
+        document.querySelector('.bowls__adelante').style.display = 'block';
+}
+
+
+// Función para manejar el scroll y el comportamiento de bowlsCont
+function handleBowlsCont() {
+    if (window.innerWidth >= 1024) {
+        // Mostrar todas las cards como un conjunto estático
+        bowlsCont.innerHTML = ''; // Limpiar contenido anterior antes de agregar nuevos elementos
+
+        cards.forEach(card => {
+            let plantilla = template.cloneNode(true);
+
+            let img = plantilla.querySelector('.bowls__img');
+            img.src = card.src;
+
+            plantilla.querySelector('.bowls__titulo').innerText = card.nombre;
+            plantilla.querySelector('.bowls__descripcion').innerText = card.descripcion;
+            plantilla.querySelector('.bowls__price').innerText = card.precio;
+            plantilla.querySelector('.bowls__btn').id = card.id;
+
+            bowlsCont.append(plantilla);
+        });
+
+        // Ocultar flechas de navegación cuando se muestran todas las cards
+        document.querySelector('.bowls__atras').style.display = 'none';
+        document.querySelector('.bowls__adelante').style.display = 'none';
+    } else {
+        // Mantener el comportamiento de carrusel
+        scrollWindows(); // Llamar a la función original para manejar el carrusel
     }
 }
+
+// Vincular handleBowlsCont al evento de cambio de tamaño de la ventana
+window.addEventListener('resize', handleBowlsCont);
+
+
+
+
 
 /*..........*/
 /*VARIABLES*/
 /*..........*/
 
-let botonMenu = document.querySelector('#show-menu'),
-    menu = document.querySelector('#contain'),
-    cerrarMenu = document.querySelector('.contenedor__navegacion'),
+let menu = document.querySelector('#portada'),
+    botonMenu = document.querySelector('#show-menu'),
     btnLogin = document.querySelector('#btn-user'),
     login = document.querySelector('#log-in-container'),
-    canelLogin = document.querySelector('#btn-cancel'),
-    btnNav = document.querySelector('.contenedor__boton'),
-    nav = document.querySelector('.contenedor__links'),
+    cerrar = document.querySelectorAll('.cerrar'),
+    cerrarMenu = document.querySelector('#home'),
+    nav = document.querySelector('.nav__links'),
+    btnNav = document.querySelector('#nav'),
     articulo = document.querySelector('.contenedor'),
-    botonesNav = document.querySelectorAll('.contenedor__link'),
-    btnCerrar = document.querySelector('.contenedor__boton--cerrar'),
-    overlay = document.querySelector('.contenedor__links--cover'),
-    formulario = document.querySelector('.tabla__notas'),
-    contenedorTabla = document.querySelector('.tabla__contenedor'),
-    tablaAprobados = document.querySelector('.estudiante__tabla'),
-    aprobadosContenedor = document.querySelector('.tabla__aprobados'),
-    botonVer = document.querySelector('.boton__ver'),
-    tabla = document.querySelector('.tabla__resultado');
+    botonesNav = document.querySelectorAll('.nav__link'),
+    btnCerrar = document.querySelector('#nav-cerrar'),
+    slogan = document.querySelector('.slogan'),
+    video = document.querySelector('.video__informacion'),
+    atras = document.querySelector('#atras'),
+    adelante = document.querySelector('#adelante'),
+    loginUser,
+    botoncerrar,
+    actual = 0;
 
-let estudiantes = []
+
+/*----------*/
+/*TEMPLATES*/
+/*--------*/
+
+class Card {
+    constructor(src, descripcion, precio, id, nombre) {
+        this.src = src;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.id = id;
+        this.nombre = nombre;
+    }
+}
+
+const cards = [
+    new Card(
+        './sources/acaiLogo.jpeg',
+        'Lorem ipsum dolor, sit amet consectetur adipisicing.',
+        '$7000',
+        'Harper',
+        'Harper Acai'
+    ),
+    new Card(
+        './sources/acaiback.jpeg',
+        'Lorem ipsum dolor, sit amet consectetur adipisicing.',
+        '$7000',
+        'Berry',
+        'Berry Acai'
+    ),
+    new Card(
+        './sources/acaiLogo.jpeg',
+        'Lorem ipsum dolor, sit amet consectetur adipisicing.',
+        '$8000',
+        'Penaut',
+        'Penaut Acai'
+    ),
+    new Card(
+        './sources/acaiback.jpeg',
+        'Lorem ipsum dolor, sit amet consectetur adipisicing.',
+        '$9000',
+        'Protein',
+        'Protein Acai'
+    ),
+    new Card(
+        './sources/acaiLogo.jpeg',
+        'Lorem ipsum dolor, sit amet consectetur adipisicing.',
+        '$9000',
+        'Flex',
+        'Flex Acai'
+    )
+]
+
+//cargamos el primer elemento en el dom para dar a entender el contendio del carrusell
+
+scrollWindows()
+handleBowlsCont();
+
 /*........*/
 /*EVENTOS*/
 /*........*/
 
-botonMenu.addEventListener('click', () => ocultarSeccion(menu));
+document.addEventListener('DOMContentLoaded', () => {
+    loginUser = JSON.parse(localStorage.getItem('login-user'));
+    configurarBotonMenu();
+
+    if (loginUser) {
+        botonMenu.addEventListener('clcik',()=>mostrarSeccion(menu));
+    } else {
+        botonMenu.addEventListener('clcik',()=>mostrarSeccion(login));
+    }
+});
+
+
 cerrarMenu.addEventListener('click', () => mostrarSeccion(menu));
 btnLogin.addEventListener('click', () => mostrarSeccion(login));
-canelLogin.addEventListener('click', () => ocultarSeccion(login));
+cerrar.forEach(btn =>{
+    btn.addEventListener('click', ()=> ocultarSeccion(login));
+})
 btnNav.addEventListener('click', () => {
     mostrarSeccion(nav);
     botonCerrar();
 });
 
+//Por cada boton de la nav usamos la funcion ocultarSeccion y eliminamos el boton cerrar en caso de que este 
 botonesNav.forEach(btn => {
     btn.addEventListener('click', () => {
-        const btnCerrar = document.querySelector('.contenedor__boton--cerrar');
-        const overlay = document.querySelector('.contenedor__links--cover');
+        ocultarSeccion(nav);
         setTimeout(() => {
-            if (btnCerrar && nav.contains(btnCerrar)) nav.removeChild(btnCerrar);
-            if (overlay && articulo.contains(overlay)) articulo.removeChild(overlay);
-            ocultarSeccion(nav);
-        }, 100);
+            // Verificar si btnCerrar está definido antes de intentar eliminarlo
+            if (typeof btnCerrar !== 'undefined' && nav.contains(btnCerrar)) {
+                nav.removeChild(btnCerrar);
+            }
+        }, 200);
     });
 });
 
+slogan.addEventListener('mouseenter', () => {
+    setTimeout(() => {
+        video.classList.remove('video--none')
+    }, 100);
+})
 
-formulario.addEventListener('submit', (e) => {
-    e.preventDefault()
-    ocultarMostrartabla(tabla);
-    ocultarMostrartabla(contenedorTabla);
-    if (!document.querySelector('.boton__volver')) {
-        botonVolver();
+slogan.addEventListener('mouseleave', () => video.classList.add('video--none'));
+
+atras.addEventListener('click', () => {
+    actual -= 1;
+
+    if (actual === -1) {
+        actual = cards.length - 1;
     }
 
-    const estudiante = document.querySelector('#estudiante').value;
-    const cantNotas = parseInt(document.querySelector('#notas').value, 10);
+    let plantilla = template.cloneNode(true);
 
-    if (cantNotas > 10 || cantNotas < 7) {
-        alert('ingrese maximo de 10 notas y un minimo de 7 notas');
-        formulario.reset()
-    } else {
-        const estudianteExistente = estudiantes.find(est => est.nombre === estudiante);
+    let img = plantilla.querySelector('.bowls__img');
+    img.src = cards[actual].src;
 
-        if (!estudianteExistente) {
-            let nuevoEstudiante = { nombre: estudiante, notas: cantNotas };
-            estudiantes.push(nuevoEstudiante);
+    plantilla.querySelector('.bowls__titulo').innerText = cards[actual].nombre;
+    plantilla.querySelector('.bowls__descripcion').innerText = cards[actual].descripcion;
+    plantilla.querySelector('.bowls__price').innerText = cards[actual].precio;
+    plantilla.querySelector('.bowls__btn').id = cards[actual].id;
 
-            const divEstudiante = document.createElement('div');
-            divEstudiante.classList.add('tabla__estudiante');
-            divEstudiante.innerHTML = `
-        <form class='form__notas'>
-            <h3 class='tabla__titulo--estudiante'>${estudiante}</h3>
-        </form>`;
-
-            let tituloEstudiante = divEstudiante.querySelector('.tabla__titulo--estudiante');
-
-            let formNotas = divEstudiante.querySelector('.form__notas');
-            let button = document.createElement('button');
-            button.type = 'submit';
-            button.textContent = 'Enviar';
-
-            const botonEliminar = document.createElement('button');
-            botonEliminar.innerText = 'Eliminar'
-            botonEliminar.addEventListener('click', () => {
-                formNotas.remove()
-
-                estudiantes = estudiantes.filter(est => est.nombre !== estudiante);
-
-                tituloEstudiante.remove()
-
-                botonEliminar.remove()
-
-            })
-
-            formNotas.append(button);
-            formNotas.append(botonEliminar);
-
-            for (let i = 1; i <= cantNotas; i++) {
-                let label = document.createElement('label');
-                label.classList.add('descripcion__nota');
-                label.innerText = ` Nota ${i}`;
-                let input = document.createElement('input');
-                input.classList.add('nota__estudiante');
-                input.type = 'number';
-                input.name = `nota${i}`;
-
-                formNotas.insertBefore(label, button);
-                formNotas.insertBefore(input, button);
-            }
-
-            formNotas.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const inputs = formNotas.querySelectorAll('.nota__estudiante');
-                let suma = 0;
-                let notaMayorADiez = false;
-
-                inputs.forEach(input => {
-                    let value = parseFloat(input.value) || 0;
-                    suma += value;
-                    if (value > 10 || value < 0) {
-                        notaMayorADiez = true;
-                    }
-                });
-
-                if (notaMayorADiez) {
-                    alert('Ingrese un valor máximo de 10 para cada nota.');
-                } else {
-                    const contenedorTablas = document.createElement('section');
-                    contenedorTablas.classList.add('tablas');
-                    let tabla = document.createElement('table');
-                    let cabecera = document.createElement('tr');
-                    cabecera.innerHTML = `<th>Nota</th><th>Puntaje</th>`;
-                    tabla.append(cabecera);
-
-                    const nombreEstudiante = document.createElement('h4');
-                    nombreEstudiante.classList.add('tabla__titulo--estudiante');
-                    nombreEstudiante.innerText = estudiante;
-
-                    let suma = 0;
-                    let cantidadValida = 0;
-
-                    contenedorTablas.append(nombreEstudiante);
-
-                    inputs.forEach((input, index) => {
-                        let value = parseFloat(input.value) || 0;
-                        if (!isNaN(value)) { // Verifica si es un número válido
-                            console.log(value);
-                            suma += value;
-                            cantidadValida++; // Incrementa el contador de valores válidos
-
-                            let fila = document.createElement('tr');
-                            let tdNota = document.createElement('td');
-                            tdNota.innerText = `Nota ${index + 1}`;
-                            fila.append(tdNota);
-
-                            let tdValor = document.createElement('td');
-                            tdValor.innerText = value;
-                            fila.append(tdValor);
-
-                            tabla.append(fila);
-                        }
-                    });
-
-                    let promedioCant = 0; // Inicializa el promedio
-                    if (cantidadValida > 0) { // Verifica si hay valores válidos
-                        promedioCant = suma / cantidadValida; // Calcula el promedio
-                        promedioCant = parseFloat(promedioCant.toFixed(2)); // Redondea el promedio a 2 decimales
-                    }
-
-                    console.log(promedioCant)
-
-
-                    let filaPromedio = document.createElement('tr');
-                    let promedio = document.createElement('td');
-                    promedio.innerText = 'Promedio'
-                    filaPromedio.append(promedio);
-
-                    let promedioValor = document.createElement('td');
-                    promedioValor.innerText = promedioCant
-                    filaPromedio.append(promedioValor);
-                    if (promedioCant <= 6) {
-                        promedioValor.style.color = '#900';
-                    } else if (promedioCant >= 7) {
-                        promedioValor.style.color = '#690'
-                        promedioValor = 10;
-                    }
-                    tabla.append(filaPromedio);
-
-
-                    contenedorTablas.append(tabla);
-                    tablaAprobados.append(contenedorTablas);
-
-                    divEstudiante.remove();
-
-                    let buttonCerrar = document.createElement('button');
-                    buttonCerrar.innerText = '❌';
-                    tabla.appendChild(buttonCerrar);
-                    buttonCerrar.addEventListener('click', () => {
-                        // Eliminar la tabla del DOM
-                        tabla.remove();
-
-                        // Eliminar el estudiante del array
-                        estudiantes = estudiantes.filter(est => est.nombre !== estudiante);
-
-                        // También eliminar el nombre del estudiante del DOM
-                        nombreEstudiante.remove();
-
-                        buttonCerrar.remove()
-
-                    });
-                    moverBotonVolverAlFinal();
-                }
-            });
-
-            tabla.append(divEstudiante);
-
-
-        } else {
-            alert(`El estudiante ${estudiante} ya está en la lista`);
-        }
-
-        formulario.reset()
-    }
-}
-
-);
-
-botonVer.addEventListener('click', () => {
-    ocultarMostrartabla(tabla);
-    ocultarMostrartabla(contenedorTabla);
-    botonVolver();
+    bowlsCont.innerHTML = '';
+    bowlsCont.append(plantilla);
 });
+
+adelante.addEventListener('click', () => {
+    actual += 1;
+
+    if (actual === cards.length) {
+        actual = 0;
+    }
+
+    let plantilla = template.cloneNode(true);
+
+    let img = plantilla.querySelector('.bowls__img');
+    img.src = cards[actual].src;
+
+    plantilla.querySelector('.bowls__titulo').innerText = cards[actual].nombre;
+    plantilla.querySelector('.bowls__descripcion').innerText = cards[actual].descripcion;
+    plantilla.querySelector('.bowls__price').innerText = cards[actual].precio;
+    plantilla.querySelector('.bowls__btn').id = cards[actual].id;
+
+    bowlsCont.innerHTML = '';
+    bowlsCont.append(plantilla);
+});
+
+
+
