@@ -1,7 +1,3 @@
-const registrate = document.querySelector('#registrate');
-const widowUser = document.querySelector('.user');
-const loginForm = document.querySelector('#login-form');
-
 registrate.addEventListener('click', () => {
     mostrarFormularioRegistro();
 });
@@ -25,7 +21,7 @@ loginForm.addEventListener('submit', (e) => {
     const usuarios = JSON.parse(localStorage.getItem('users')) || [];
 
     const usuarioValido = usuarios.find(usuario => usuario.mail === mail && usuario.pass === pass);
-    
+
     if (!usuarioValido) {
         return Swal.fire({
             position: "center",
@@ -47,23 +43,25 @@ loginForm.addEventListener('submit', (e) => {
 
         widowUser.classList.remove('user__display');
         loginForm.classList.add('form--display');
+        userName.innerHTML = `<span>Nombre:</span> ${usuarioValido.nombre}`
         configurarBotonMenu(); // Configura el comportamiento del botón del menú después de iniciar sesión
 
         loginForm.reset();
     }
 });
 
-function configurarBotonMenu() {
-    botonMenu.removeEventListener('click', manejarBotonMenu);
-    botonMenu.addEventListener('click', manejarBotonMenu);
-}
 
-function manejarBotonMenu() {
-    loginUser = JSON.parse(localStorage.getItem('login-user'));
-    if (!loginUser) {
-        mostrarSeccion(login);
-    } else {
-        ocultarSeccion(menu);
-    }
-}
+userOut.addEventListener('click', () => {
+    Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Has salido correctamente",
+        showConfirmButton: false,
+        timer: 1000
+    });
 
+    localStorage.removeItem('login-user');
+
+    widowUser.classList.add('user__display');
+    loginForm.classList.remove('form--display');
+})

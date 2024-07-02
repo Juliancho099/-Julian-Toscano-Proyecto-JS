@@ -73,6 +73,8 @@ body {
   color: #2D1A40;
 }
 
+
+
 /*LOGIN*/
 .login {
   position: fixed;
@@ -175,9 +177,8 @@ body {
   color: #F2F2F2;
 }
 .login__contenedor .form__denegado {
-  color: #D93636;
+  color: #ff0000;
   margin-top: 0.5rem;
-  display: none;
 }
 .login__contenedor .form--display {
   display: none;
@@ -246,12 +247,18 @@ body {
   display: none;
 }
 
+
+
 /*NAV*/
 .contenedor {
   width: 100%;
   background-color: #3F2559;
   min-height: 100vh;
   overflow: hidden;
+}
+
+#contedor{
+  z-index: 10;
 }
 .contenedor__header {
   width: 100%;
@@ -676,4 +683,3 @@ body {
   }
 }
 
-/*# sourceMappingURL=style.css.map */

@@ -41,9 +41,9 @@
                 </div>
                 <div class="form__btns">
                     <button id="btn-login" class="form__btn" type="submit">Confirmar</button>
-                    <button id="btn-cancel" class="form__btn cerrar" >Cancelar</button>
+                    <button id="btn-cancel" class="form__btn cerrar" type="button">Cancelar</button>
                 </div>
-                <p id="rechazo" class="form__denegado portada--none"> Alguno de los datos no es correcto</p>
+                <p id="rechazo-login" class="form__denegado user__display"> Alguno de los datos no es correcto</p>
             </form>
             <form id="register-form" class="form form--display">
                 <div class="form__login">
@@ -60,14 +60,14 @@
                 </div>
                 <div class="form__btns">
                     <button id="btn-register" class="form__btn" type="submit">Confirmar</button>
-                    <button id="btn-cancel-register" class="form__btn" type="button">Cancelar</button>
+                    <button id="btn-cancel-register" class="form__btn">Cancelar</button>
                 </div>
-                <p id="rechazo-register" class="form__denegado portada--none"> Alguno de los datos no es correcto</p>
+                <p id="rechazo-register" class="form__denegado user__display"> Alguno de los datos no es correcto</p>
             </form>
             <div class="user user__display">
                 <h3 class="user__estado">Sesion Iniciada</h3>
                 <div class="user__informacion">
-                    <p class="user__name"><span>Nombre:</span> Julian</p>
+                    <p class="user__name"></p>
                     <button class="user__logout">Cerrar Sesion</button>
                     <p id="user-out" class="cerrar"><i class="bi bi-x-lg"></i></p>
                 </div>
@@ -124,7 +124,7 @@
                                     <p class="bowls__descripcion">Lorem ipsum dolor, sit amet consectetur adipisicing.
                                     </p>
                                     <p class="bowls__price">$7000</p>
-                                    <buttom class="bowls__btn" id="comprar">comprar</buttom>
+                                    <buttom class="bowls__btn">comprar</buttom>
                                 </div>
                             </div>
                         </template>
@@ -140,12 +140,16 @@
 
     <!-- AlertasSweet -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Funciones And Variables -->
+    <script src="./js/funciones.js"></script>
     <!-- MAIN JS -->
     <script src="./js/main.js"></script>
     <!-- lOGIN -->
     <script src="./js/login.js"></script>
     <!-- Register -->
     <script src="./js/register.js"></script>
+    <!-- Carrito -->
+     <script src="./js/carrito.js"></script>
 </body>
 
 </html>
