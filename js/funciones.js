@@ -21,13 +21,13 @@ let menu = document.querySelector('#portada'),
     adelante = document.querySelector('#adelante'),
     bowlsCont = document.querySelector('.bowls__cont'),
     template = document.querySelector('template').content,
+    // carrito
+    botonesComprar, // Inicialmente undefined, será actualizado dinámicamente
     //Seccion Login y Regiister
     loginUser,
     userName = document.querySelector('.user__name'),
     botoncerrar,
     actual = 0;
-
-
 //Constantes del Login
 const registrate = document.querySelector('#registrate');
 const widowUser = document.querySelector('.user');
@@ -38,6 +38,20 @@ const botonCancelar = document.querySelector('#btn-cancel');
 const registerForm = document.querySelector('#register-form');
 const btnCancel = document.querySelector('#btn-cancel-register');
 const emailVerificacion = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Array Crrito
+
+let productosCarrito;
+let numerito = document.querySelector('.numerito');
+const ProductosEnCarritoLs = JSON.parse(localStorage.getItem('productos'));
+
+if (ProductosEnCarritoLs) {
+    productosCarrito = ProductosEnCarritoLs
+    actualizarNumerito()
+} else {
+    productosCarrito = [];
+}
+
 
 /**---------- */
 /**Funciones */
@@ -59,8 +73,6 @@ function mostrarSeccion(seccion) {
         seccion.classList.add('left');
         btnNav.classList.add('nav--display');
     }
-
-
 }
 
 function ocultarSeccion(seccion) {
@@ -85,7 +97,7 @@ function ocultarSeccion(seccion) {
     }
 }
 
-//creawmos un boton para cerrar la seccion Nav
+//creamos un boton para cerrar la seccion Nav
 
 const botonCerrar = () => {
     btnCerrar = document.createElement('a');
@@ -134,43 +146,97 @@ function manejarBotonMenu() {
 // Creamos una funcion para cuando la pantalla pase cierta cantidad
 //de pixeles el carrusel pase a un array de productos
 
-function scrollWindows() {
-
-    // Mostrar una sola vez cuando se está por debajo de los píxeles
-    bowlsCont.innerHTML = ''; 
+function inicializarPrimeraCard() {
     let plantilla = template.cloneNode(true);
+
+    let img = plantilla.querySelector('.bowls__img');
+    img.src = cards[0].src;
+
+    plantilla.querySelector('.bowls__titulo').innerText = cards[0].nombre;
+    plantilla.querySelector('.bowls__descripcion').innerText = cards[0].descripcion;
+    plantilla.querySelector('.bowls__price').innerText = `$${cards[0].precio}`;
+    plantilla.querySelector('.bowls__btn').id = cards[0].id;
+
+    bowlsCont.innerHTML = '';
     bowlsCont.append(plantilla);
 
-    // Mostrar flechas de navegación cuando se está por debajo de los píxeles
     document.querySelector('.bowls__atras').style.display = 'block';
     document.querySelector('.bowls__adelante').style.display = 'block';
+
+    inicializarBotonesComprar()
+
 }
 
 
 // Función para manejar el scroll y el comportamiento de bowlsCont
 function handleBowlsCont() {
-if (window.innerWidth >= 1024) {
-    bowlsCont.innerHTML = ''; // Limpiar contenido anterior antes de agregar nuevos elementos
+    if (window.innerWidth >= 1024) {
+        bowlsCont.innerHTML = ''; // Limpiar contenido anterior antes de agregar nuevos elementos
 
-    cards.forEach(card => {
-        let plantilla = template.cloneNode(true);
+        cards.forEach(card => {
+            let plantilla = template.cloneNode(true);
 
-        let img = plantilla.querySelector('.bowls__img');
-        img.src = card.src;
+            let img = plantilla.querySelector('.bowls__img');
+            img.src = card.src;
 
-        plantilla.querySelector('.bowls__titulo').innerText = card.nombre;
-        plantilla.querySelector('.bowls__descripcion').innerText = card.descripcion;
-        plantilla.querySelector('.bowls__price').innerText = card.precio;
-        plantilla.querySelector('.bowls__btn').id = card.id;
+            plantilla.querySelector('.bowls__titulo').innerText = card.nombre;
+            plantilla.querySelector('.bowls__descripcion').innerText = card.descripcion;
+            plantilla.querySelector('.bowls__price').innerText = `$${card.precio}`;
+            plantilla.querySelector('.bowls__btn').id = card.id;
 
-        bowlsCont.append(plantilla);
-    });
+            bowlsCont.append(plantilla);
+        });
 
-    // Ocultar flechas de navegación cuando se muestran todas las cards
-    document.querySelector('.bowls__atras').style.display = 'none';
-    document.querySelector('.bowls__adelante').style.display = 'none';
-} else {
-    // Mantener el comportamiento de carrusel
-    scrollWindows(); 
+        // Ocultar flechas de navegación cuando se muestran todas las cards
+        document.querySelector('.bowls__atras').style.display = 'none';
+        document.querySelector('.bowls__adelante').style.display = 'none';
+
+        // Llamar a la función de inicialización de los botones
+        inicializarBotonesComprar();
+    } else {
+        // Mantener el comportamiento de carrusel
+        inicializarPrimeraCard()
+    }
 }
+
+
+function inicializarBotonesComprar() {
+    const botonesComprar = document.querySelectorAll('.bowls__btn');
+    botonesComprar.forEach(boton => {
+        boton.addEventListener('click', AgregarAlCarrito)
+    })
+
 }
+
+function AgregarAlCarrito(e) {
+    const idBoton = e.currentTarget.id;
+    const productoAgregado = cards.find(card => card.id === idBoton);
+
+    if (productosCarrito.some(producto => producto.id === idBoton)) {
+        const index = productosCarrito.findIndex(producto => producto.id === idBoton);
+        productosCarrito[index].cantidad++;
+    } else {
+        productoAgregado.cantidad = 1;
+        productosCarrito.push(productoAgregado)
+    }
+
+    actualizarNumerito()
+
+    localStorage.setItem('productos', JSON.stringify(productosCarrito));
+}
+
+function actualizarNumerito() {
+
+    let nuevoNumerito = productosCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+    numerito.innerText = nuevoNumerito;
+
+
+}
+
+
+
+
+
+
+
+

@@ -17,7 +17,7 @@ registerForm.addEventListener('submit', (e) => {
 
         setTimeout(()=>{
             mensajeError.classList.add('user__display');
-        },1000)
+        },1500)
     
     }else{
 
