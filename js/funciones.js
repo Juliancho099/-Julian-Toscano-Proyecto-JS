@@ -209,6 +209,23 @@ function inicializarBotonesComprar() {
 }
 
 function AgregarAlCarrito(e) {
+
+    Toastify({
+
+        text: "Se Añadaio al carrito",
+        duration: 1500,
+        close: false,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #2D1A40, #2D1A40)",
+            borderRadius: '2rem',
+            textTransform: 'uppercase',
+            fontSize: '.8rem'
+        },
+        onClick: function () { } // Callback after click
+    }).showToast();
     const idBoton = e.currentTarget.id;
     const productoAgregado = cards.find(card => card.id === idBoton);
 
