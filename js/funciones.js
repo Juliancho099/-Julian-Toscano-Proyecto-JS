@@ -3,31 +3,36 @@
 /*..........*/
 //Seccion principal
 let menu = document.querySelector('#portada'),
-    botonMenu = document.querySelector('#show-menu'),
-    btnLogin = document.querySelector('#btn-user'),
-    login = document.querySelector('#log-in-container'),
-    cerrar = document.querySelectorAll('.cerrar'),
-    cerrarMenu = document.querySelector('#home'),
-    //Secciion Nav
-    nav = document.querySelector('.nav__links'),
-    btnNav = document.querySelector('#nav'),
-    botonesNav = document.querySelectorAll('.nav__link'),
-    btnCerrar = document.querySelector('#nav-cerrar'),
-    //Seccion Slogan y Bowls
-    articulo = document.querySelector('.contenedor'),
-    slogan = document.querySelector('.slogan'),
-    video = document.querySelector('.video__informacion'),
-    atras = document.querySelector('#atras'),
-    adelante = document.querySelector('#adelante'),
-    bowlsCont = document.querySelector('.bowls__cont'),
-    template = document.querySelector('template').content,
-    // carrito
-    botonesComprar, // Inicialmente undefined, será actualizado dinámicamente
-    //Seccion Login y Regiister
-    loginUser,
-    userName = document.querySelector('.user__name'),
-    botoncerrar,
-    actual = 0;
+	botonMenu = document.querySelector('#show-menu'),
+	btnLogin = document.querySelector('#btn-user'),
+	login = document.querySelector('#log-in-container'),
+	cerrar = document.querySelectorAll('.cerrar'),
+	cerrarMenu = document.querySelector('#home'),
+	//Secciion Nav
+	nav = document.querySelector('.nav__links'),
+	btnNav = document.querySelector('#nav'),
+	botonesNav = document.querySelectorAll('.nav__link'),
+	btnCerrar = document.querySelector('#nav-cerrar'),
+	//Seccion Slogan y Bowls
+	articulo = document.querySelector('.contenedor'),
+	slogan = document.querySelector('.slogan'),
+	video = document.querySelector('.video__informacion'),
+	atras = document.querySelector('#atras'),
+	adelante = document.querySelector('#adelante'),
+	bowlsCont = document.querySelector('.bowls__cont'),
+	template = document.querySelector('template').content,
+	productosJSON,
+	cards = [],
+	// Sedes
+	sedesJSON,
+	sucursales = document.querySelector('.sucursales'),
+	// carrito
+	botonesComprar, // Inicialmente undefined, será actualizado dinámicamente
+	//Seccion Login y Regiister
+	loginUser,
+	userName = document.querySelector('.user__name'),
+	botoncerrar,
+	actual = 0;
 //Constantes del Login
 const registrate = document.querySelector('#registrate');
 const widowUser = document.querySelector('.user');
@@ -153,7 +158,8 @@ function inicializarPrimeraCard() {
     img.src = cards[0].src;
 
     plantilla.querySelector('.bowls__titulo').innerText = cards[0].nombre;
-    plantilla.querySelector('.bowls__descripcion').innerText = cards[0].descripcion;
+    plantilla.querySelector('.bowls__descripcion').innerHTML =
+		cards[0].descripcion.replace(/\n/g, '<br>');
     plantilla.querySelector('.bowls__price').innerText = `$${cards[0].precio}`;
     plantilla.querySelector('.bowls__btn').id = cards[0].id;
 
@@ -170,7 +176,7 @@ function inicializarPrimeraCard() {
 
 // Función para manejar el scroll y el comportamiento de bowlsCont
 function handleBowlsCont() {
-    if (window.innerWidth >= 1024) {
+    if (window.innerWidth >= 768) {
         bowlsCont.innerHTML = ''; // Limpiar contenido anterior antes de agregar nuevos elementos
 
         cards.forEach(card => {
@@ -180,7 +186,8 @@ function handleBowlsCont() {
             img.src = card.src;
 
             plantilla.querySelector('.bowls__titulo').innerText = card.nombre;
-            plantilla.querySelector('.bowls__descripcion').innerText = card.descripcion;
+            plantilla.querySelector('.bowls__descripcion').innerHTML =
+				card.descripcion.replace(/\n/g, '<br>');
             plantilla.querySelector('.bowls__price').innerText = `$${card.precio}`;
             plantilla.querySelector('.bowls__btn').id = card.id;
 
@@ -249,6 +256,9 @@ function actualizarNumerito() {
 
 
 }
+
+
+
 
 
 

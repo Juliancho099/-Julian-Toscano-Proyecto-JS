@@ -1,0 +1,39 @@
+[
+    {
+        "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3285.8283467260753!2d-58.45528677344239!3d-34.557901285164334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5036294916d%3A0x2539a3cff8c2d4ba!2sHarper%20juice!5e0!3m2!1ses-419!2sar!4v1720643941401!5m2!1ses-419!2sar",
+        "titulo": "Barrio Chino",
+        "direccion": "Arribeños 2108, C1428 Cdad. Autónoma de Buenos Aires"
+        
+    },
+    {
+        "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.5434862720763!2d-58.40327558755835!3d-34.59041605668483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca9bd351f3fd%3A0xd137ff30d10ebfcc!2sHarper%20Juice%20%26%20Coffee%20Store!5e0!3m2!1ses-419!2sar!4v1720641630196!5m2!1ses-419!2sar",
+        "titulo": "Recoleta",
+        "direccion": "Av. Pueyrredón 1782, C1119ACN Cdad. Autónoma de Buenos Aires"
+        
+    },
+    {
+        "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3286.3338019614093!2d-58.46159698756006!3d-34.5451028542943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5134cb8b1f5%3A0x9d20789e911761ba!2sHarper%20Juice%20%26%20Coffee%20Store!5e0!3m2!1ses-419!2sar!4v1720641820547!5m2!1ses-419!2sar",
+        "titulo": "Nuñez",
+        "direccion": "Av. del Libertador 7395, C1429 Cdad. Autónoma de Buenos Aires"
+        
+    },
+    {
+        "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.971837025381!2d-58.42947848755882!3d-34.579579156113006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5855498bc5d%3A0x66339d7c5ce7ead5!2sHarper%20Juice%20%26%20Coffee%20Store!5e0!3m2!1ses-419!2sar!4v1720641915667!5m2!1ses-419!2sar",
+        "titulo": "Distrito Arcos",
+        "direccion": "Paraguay 4979, C1425BTC Cdad. Autónoma de Buenos Aires"
+        
+    },
+    {
+        "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3285.575369784233!2d-58.4555809875594!3d-34.56430525530699!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb524f54f1d83%3A0x9f0ed358eb33fb7b!2sHarper%20Juice%20%26%20Coffee%20Store!5e0!3m2!1ses-419!2sar!4v1720642033059!5m2!1ses-419!2sar",
+        "titulo": "Belgrano",
+        "direccion": "La Pampa 2290, C1428 Cdad. Autónoma de Buenos Aires"
+        
+    },
+    {
+        "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13130.474647528536!2d-58.430859812841796!3d-34.6390758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccb5bf5fde6ff%3A0x6ecf614552d5b69b!2sHarper%20Juice%20%26%20Coffee%20Store!5e0!3m2!1ses-419!2sar!4v1720642160834!5m2!1ses-419!2sar",
+        "titulo": "Parque Patricios",
+        "direccion": "1137, Av. Almafuerte 47, C1137 Cdad. Autónoma de Buenos Aires"
+        
+    }
+    
+]

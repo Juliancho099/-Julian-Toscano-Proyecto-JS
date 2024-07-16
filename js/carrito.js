@@ -59,7 +59,7 @@ function eliminarDelCarrito(e) {
         position: "left", // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
-            background: "linear-gradient(to right, #2D1A40, #2D1A40)",
+            background: "linear-gradient(to right, #A65698, #A65698",
             borderRadius: '2rem',
             textTransform: 'uppercase',
             fontSize: '.8rem'
@@ -79,7 +79,7 @@ function VaciarCarrito() {
     Swal.fire({
         title: "Estas Seguro?",
         icon: "question",
-        html: `Se van a borrar ${ProductosEnCarrito.reduce((acc, producto)=> acc + producto.cantidad,0)} productos`,
+        html: `Se van a borrar ${ProductosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0)} productos`,
         showCancelButton: true,
         focusConfirm: false,
         confirmButtonText: `Si`,

@@ -1,0 +1,37 @@
+[
+    {
+        "src": "./sources/acaiLogo.jpeg",
+        "descripcion": "BASE: Acai, Banana y Frutilla.<br>TOPPINGS: Arandanos, Kiwi y Banana.",
+        "precio": 7000,
+        "id": "Harper",
+        "nombre": "Harper Acai"
+    },
+    {
+        "src": "./sources/acaiback.jpeg",
+        "descripcion":"BASE: Acai, Arandanos y Frutilla.<br>TOPPINGS: Arandanos, Kiwi y Coco",
+        "precio": 7000,
+        "id": "Berry",
+        "nombre": "Berry Acai"
+    },
+    {
+        "src": "./sources/acaiLogo.jpeg",
+        "descripcion": "BASE: Acai, y Banana.<br>TOPPINGS: Mantequilla de Mani, Granola y Banana.",
+        "precio": 8000,
+        "id": "Penaut",
+        "nombre": "Penaut Acai"
+    },
+    {
+        "src": "./sources/acaiback.jpeg",
+        "descripcion": "BASE: Acai, Proteina de Frutilla y Frutilla.<br>TOPPINGS: Avena, Coco, Granola y M.Mani.",
+        "precio": 9000,
+        "id": "Protein",
+        "nombre": "Protein Acai"
+    },
+    {
+        "src": "./sources/acaiLogo.jpeg",
+        "descripcion": "BASE: Acai.<br>TOPPINGS: Copos de maiz, Chocolate y Banana.",
+        "precio": 9000,
+        "id": "Flex",
+        "nombre": "Flex Acai"
+    }
+]

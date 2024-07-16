@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +33,8 @@
             <form id="login-form" class="form">
                 <div class="form__login">
                     <Label for="user-input" class="form__label">Usuario</Label>
-                    <input type="mail" placeholder="Ingrese su Email" lang="1" class="form__control" id="user-mail" autofocus required>
+                    <input type="mail" placeholder="Ingrese su Email" lang="1" class="form__control" id="user-mail"
+                        autofocus required>
                 </div>
                 <div class="form__login">
                     <label class="form__label">Contraseña</label>
@@ -45,8 +45,9 @@
                     <button id="btn-login" class="form__btn" type="submit">Confirmar</button>
                     <button id="btn-cancel" class="form__btn cerrar" type="button">Cancelar</button>
                 </div>
-                <p id="rechazo-login" class="form__denegado user__display"> Alguno de los datos no es correcto</p>
             </form>
+
+            <!-- Registro -->
             <form id="register-form" class="form form--display">
                 <div class="form__login">
                     <Label class="form__label">Usuario</Label>
@@ -62,7 +63,7 @@
                 </div>
                 <div class="form__btns">
                     <button id="btn-register" class="form__btn" type="submit">Confirmar</button>
-                    <button id="btn-cancel-register" class="form__btn">Cancelar</button>
+                    <button id="btn-cancel-register" class="form__btn" type="button">Cancelar</button>
                 </div>
                 <p id="rechazo-register" class="form__denegado user__display"> Alguno de los datos no es correcto</p>
             </form>
@@ -86,8 +87,9 @@
                 <div class="nav__links nav--display">
                     <a href="#acai-bowls" class="nav__link" data-index="0">Bowls</a>
                     <a href="#informacion" class="nav__link" data-index="1">Informacion</a>
-                    <a href="#" class="nav__link " data-index="2">Equipo</a>
-                    <a href="./pages/carrito.html" class="nav__logo nav__link"><i class="bi bi-cart-check"><span class="numerito">0</span></i></a>
+                    <a href="#equipo" class="nav__link " data-index="2">Equipo</a>
+                    <a href="./pages/carrito.html" class="nav__logo nav__link"><i class="bi bi-cart-check"><span
+                                class="numerito">0</span></i></a>
                 </div>
                 <a id="nav" class="nav__logo nav__relative"><i class="bi bi-menu-button"></i></a>
             </nav>
@@ -101,15 +103,18 @@
                 </video>
                 <div class="video__informacion video--none">
                     <h2 class="video__titulo">ACAI</h2>
-                    <p class="video__parrafo">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae, iure?
+                    <p class="video__parrafo">
+                        El açaí es una fruta amazónica conocida por sus altos niveles de antioxidantes y nutrientes. Es
+                        ideal para hacer helados y jugos, proporcionando un sabor distintivo y beneficios saludables. Su
+                        pulpa cremosa y sabor a bayas lo hacen perfecto para crear productos refrescantes, nutritivos y
+                        energizantes en la industria alimentaria.
                     </p>
                 </div>
             </div>
         </section>
 
         <!-- BOWLS -->
-
-        <section class="cardSeccion">
+        <section id="acai-bowls" class="cardSeccion">
             <h2 class="cardSeccion__titulo">Bowls</h2>
             <div class="card">
                 <div class="bowls">
@@ -139,7 +144,31 @@
             </div>
         </section>
 
+        <!-- Informacion -->
+        <section id="informacion" class="informacion">
+            <h2 class="informacion__titulo">¿Donde los consigo?</h2>
+            <div class="sucursales">
+                <!-- Se ajusta desde js -->
+            </div>
+        </section>
+
+        <!-- Equipo -->
+        <section id="equipo" class="equipo">
+            <h2 class="equipo__titulo">Equipo de Trabajo</h2>
+            <div class="grupos">
+                <!-- Se reellena con js -->
+            </div>
+        </section>
+
     </article>
+
+    <!-- FOOTER -->
+    <footer>
+        <div>
+            <h4>HARPER JUICE COFFE & JUICE</h4>
+            <P>@DerechosReservados</P>
+        </div>
+    </footer>
 
     <!-- AlertasSweet -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -155,5 +184,4 @@
     <script src="./js/register.js"></script>
 
 </body>
-
 </html>
